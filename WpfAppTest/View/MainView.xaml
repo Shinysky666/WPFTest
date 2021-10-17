@@ -5,8 +5,24 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfAppTest.View"
         mc:Ignorable="d"
-        Title="MainView" Height="450" Width="800">
-    <Grid>
+        Title="菜鸡平台" Height="800" Width="1250"
+        FontFamily="Microsoft YaHei" FontWeight="ExtraLight" FontSize="12"
+        WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True" Background="{x:Null}">
+    
+    <Border Margin="5" Background="White" CornerRadius="10">
+        <!--边框阴影-->
+        <Border.Effect>
+            <DropShadowEffect Color="Gray" ShadowDepth="0" BlurRadius="5" Opacity="0.3" Direction="0"/>
+        </Border.Effect>
+        <Grid>
+            <Border Background="#007DFA" Height="200" VerticalAlignment="Top" CornerRadius="10,10,0,0"/>
+            <!--窗口控制按钮-->
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Right">
+                <Button Height="40" Width="40"/>
+                <Button Height="40" Width="40"/>
+                <Button Height="40" Width="40"/>
+            </StackPanel>
+        </Grid>
         
-    </Grid>
+    </Border>
 </Window>
