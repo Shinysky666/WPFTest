@@ -8,6 +8,10 @@
         Title="菜鸡平台" Height="800" Width="1250"
         FontFamily="Microsoft YaHei" FontWeight="ExtraLight" FontSize="12"
         WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True" Background="{x:Null}">
+
+    <Window.Resources>
+        <ResourceDictionary Source="../Assets/Styles/DefaultStyle.xaml"/>
+    </Window.Resources>
     
     <Border Margin="5" Background="White" CornerRadius="10">
         <!--边框阴影-->
@@ -18,9 +22,9 @@
             <Border Background="#007DFA" Height="200" VerticalAlignment="Top" CornerRadius="10,10,0,0"/>
             <!--窗口控制按钮-->
             <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Right">
-                <Button Height="40" Width="40"/>
-                <Button Height="40" Width="40"/>
-                <Button Height="40" Width="40"/>
+                <Button Style="{StaticResource WindowControlButtonStyle}" Content="&#xe7e6;"/>
+                <Button Style="{StaticResource WindowControlButtonStyle}" Content="&#xe653;"/>
+                <Button Style="{StaticResource WindowControlButtonStyle}" Content="&#xeca0;"/>
             </StackPanel>
         </Grid>
         
