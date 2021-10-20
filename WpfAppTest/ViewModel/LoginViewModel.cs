@@ -16,7 +16,17 @@ namespace WpfAppTest.ViewModel
         public LoginModel LoginModel { get; set; } = new LoginModel();      
         public CommandBase CloseWindowCommand { get; set; }       
         public CommandBase LoginCommand { get; set; }
+
         private string message;
+        private string showprogress;
+
+        //数据库连接进度条
+        public string ShowProgress
+        {
+            get { return showprogress; }
+            set { showprogress = value; this.DoNotify(); }
+        }
+
 
         //登录信息提示
         public string PromptMessage
@@ -44,6 +54,9 @@ namespace WpfAppTest.ViewModel
             this.LoginCommand.DoExecute = new Action<object>(DoLogin);
             this.LoginCommand.DoCanExecute = new Func<object, bool>((o) => { return true /*ShowProgress ==
                 Visibility.Collapsed*/; });
+
+            //登录进度条显示
+            this.ShowProgress = "Hidden";
         }
 
         private void DoLogin(object o)
@@ -77,6 +90,7 @@ namespace WpfAppTest.ViewModel
             //多线程执行登录操作
             Task.Run(new Action(() =>
             {
+                this.ShowProgress = "Visible";
                 try
                 {
                     var user = LocalDataAccess.GetInstance().CheckUserInfo(LoginModel.UserName, LoginModel.Password);
@@ -96,6 +110,7 @@ namespace WpfAppTest.ViewModel
                 catch (Exception e)
                 {
                     this.PromptMessage = e.Message;
+                    this.ShowProgress = "Hidden";
                 }
             }));
         }

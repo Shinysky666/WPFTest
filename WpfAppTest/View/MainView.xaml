@@ -10,7 +10,31 @@
         WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True" Background="{x:Null}">
 
     <Window.Resources>
-        <ResourceDictionary Source="../Assets/Styles/DefaultStyle.xaml"/>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Assets/Styles/DefaultStyle.xaml"/>
+                <ResourceDictionary>
+                    <Style TargetType="RadioButton" x:Key="NavButtonStyle">
+                        <Setter Property="Foreground" Value="White"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="RadioButton">
+                                    <Border Background="Transparent" CornerRadius="8" Name="back">
+                                        <ContentControl Content="{TemplateBinding Content}" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="20,4" FontSize="13"/>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsChecked" Value="True">
+                                            <Setter TargetName="back" Property="Background" Value="#44FFFFFF"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+
+                    </Style>
+                </ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Window.Resources>
     
     <Border Margin="5" Background="White" CornerRadius="10">
@@ -41,7 +65,7 @@
                         <TextBlock Text="CAIJI EDU" Foreground="#88DDDDDD" FontSize="10" HorizontalAlignment="Center"/>
                     </StackPanel>
                 </StackPanel>
-
+                <!--第一行 右边-->
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
                     <Border Width="30" Height="30" CornerRadius="15">
                         <Border.Background>
@@ -51,9 +75,15 @@
                     <TextBlock Text="Administrator" VerticalAlignment="Center" Foreground="White" Margin="10,0,0,0"/>
                 </StackPanel>
 
-
+                <!--第二行-->
+                <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center">
+                    <RadioButton Content="首页" Style="{StaticResource NavButtonStyle}" IsChecked="True"/>
+                    <RadioButton Content="关于我们" Style="{StaticResource NavButtonStyle}"/>
+                    <RadioButton Content="课程中心" Style="{StaticResource NavButtonStyle}"/>
+                    <RadioButton Content="诚聘英才" Style="{StaticResource NavButtonStyle}"/>
+                    <RadioButton Content="个人中心" Style="{StaticResource NavButtonStyle}"/>
+                </StackPanel>
             </Grid>
-            
         </Grid>
     </Border>
 </Window>
