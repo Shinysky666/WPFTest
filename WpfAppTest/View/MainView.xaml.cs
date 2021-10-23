@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using WpfAppTest.ViewModel;
 
 namespace WpfAppTest.View
 {
@@ -22,6 +23,35 @@ namespace WpfAppTest.View
         public MainView()
         {
             InitializeComponent();
+            this.MaxHeight = SystemParameters.PrimaryScreenWidth;
+            this.DataContext = new MainViewModel();
+        }
+
+        //拖动窗口
+        private void Border_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if(e.LeftButton == MouseButtonState.Pressed)
+            {
+                this.DragMove();
+            }
+        }
+
+        //最小化按钮
+        private void btnMin_Click(object sender, RoutedEventArgs e)
+        {
+            this.WindowState = WindowState.Minimized;
+        }
+
+        //最大化按钮
+        private void btnMax_Click(object sender, RoutedEventArgs e)
+        {
+            this.WindowState = this.WindowState == WindowState.Maximized ?
+                WindowState.Normal : WindowState.Maximized;
+        }
+        //关闭按钮
+        private void btnClose_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

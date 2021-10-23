@@ -18,10 +18,10 @@ namespace WpfAppTest.ViewModel
         public CommandBase LoginCommand { get; set; }
 
         private string message;
-        private string showprogress;
+        private Visibility showprogress = Visibility.Collapsed;
 
         //数据库连接进度条
-        public string ShowProgress
+        public Visibility ShowProgress
         {
             get { return showprogress; }
             set { showprogress = value; this.DoNotify(); }
@@ -52,45 +52,44 @@ namespace WpfAppTest.ViewModel
             //登录按钮
             this.LoginCommand = new CommandBase();
             this.LoginCommand.DoExecute = new Action<object>(DoLogin);
-            this.LoginCommand.DoCanExecute = new Func<object, bool>((o) => { return true /*ShowProgress ==
-                Visibility.Collapsed*/; });
-
-            //登录进度条显示
-            this.ShowProgress = "Hidden";
+            this.LoginCommand.DoCanExecute = new Func<object, bool>((o) => {
+                return ShowProgress == Visibility.Collapsed;});      
         }
 
         private void DoLogin(object o)
         {
             
             this.PromptMessage = "";
-
-
+            this.ShowProgress = Visibility.Visible;
             Console.WriteLine(LoginModel.Password);
             if(string.IsNullOrEmpty(LoginModel.UserName))
             {
                 this.PromptMessage = "请输入用户名!";
+                this.ShowProgress = Visibility.Collapsed;
                 return;
             }
             if(string.IsNullOrEmpty(LoginModel.Password))
             {
                 this.PromptMessage = "请输入密码!";
+                this.ShowProgress = Visibility.Collapsed;
                 return;
             }
             if(string.IsNullOrEmpty(LoginModel.ValidateCode))
             {
                 this.PromptMessage = "请输入验证码";
+                this.ShowProgress = Visibility.Collapsed;
                 return;
             }
             if(LoginModel.ValidateCode.ToLower()!="6666")
             {
                 this.PromptMessage = "验证码错误,请重新输入";
+                this.ShowProgress = Visibility.Collapsed;
                 return;
             }
 
             //多线程执行登录操作
             Task.Run(new Action(() =>
-            {
-                this.ShowProgress = "Visible";
+            {            
                 try
                 {
                     var user = LocalDataAccess.GetInstance().CheckUserInfo(LoginModel.UserName, LoginModel.Password);
@@ -110,7 +109,10 @@ namespace WpfAppTest.ViewModel
                 catch (Exception e)
                 {
                     this.PromptMessage = e.Message;
-                    this.ShowProgress = "Hidden";
+                    this.ShowProgress = Visibility.Collapsed;
+
+
+                    Console.WriteLine("数据库问题: " + e.Message);
                 }
             }));
         }
