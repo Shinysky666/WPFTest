@@ -97,6 +97,9 @@ namespace WpfAppTest.Service
                     userinfo.Password = dr.Field<string>("password");
                     userinfo.Avator = dr.Field<string>("avator");
                     userinfo.Gender = dr.Field<Int32>("gender");
+
+                    Console.WriteLine(dr.ToString());
+
                     return userinfo;
                 }
             }

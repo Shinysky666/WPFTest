@@ -169,3 +169,7 @@ D:\Study\WPFTest\WpfAppTest\obj\Debug\WpfAppTest.csproj.CoreCompileInputs.cache
 D:\Study\WPFTest\WpfAppTest\obj\Debug\WpfAppTest.csproj.CopyComplete
 D:\Study\WPFTest\WpfAppTest\obj\Debug\WpfAppTest.exe
 D:\Study\WPFTest\WpfAppTest\obj\Debug\WpfAppTest.pdb
+D:\Study\WPFTest\WpfAppTest\obj\Debug\View\CoursePageView.g.cs
+D:\Study\WPFTest\WpfAppTest\obj\Debug\View\FirstPageView.g.cs
+D:\Study\WPFTest\WpfAppTest\obj\Debug\View\CoursePageView.baml
+D:\Study\WPFTest\WpfAppTest\obj\Debug\View\FirstPageView.baml

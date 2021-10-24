@@ -74,13 +74,39 @@
                             </DataTrigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
+                    
+                    <!--点击用户名字头像抽屉侧滑栏动画-->
+                    <Storyboard x:Key="UserInfoStoryboard">
+                        <DoubleAnimation Duration="0:0:0.2" To="0"
+                                         Storyboard.TargetName="DrawertypeUserInfo"
+                                         Storyboard.TargetProperty="X"/>
+                    </Storyboard>
+                    <!--点击抽屉侧滑栏关闭动画-->
+                    <Storyboard x:Key="CloseUserInfoStoryboard">
+                        <DoubleAnimation Duration="0:0:0.1" 
+                                         Storyboard.TargetName="DrawertypeUserInfo"
+                                         Storyboard.TargetProperty="X"/>
+                    </Storyboard>
 
                 </ResourceDictionary>
+                             
             </ResourceDictionary.MergedDictionaries>
             
         </ResourceDictionary>
     </Window.Resources>
 
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="Button.Click" SourceName="W_Triger_btnDrawertypeUserInfo">
+            <BeginStoryboard Storyboard="{StaticResource UserInfoStoryboard}"/>
+        </EventTrigger>
+
+        <EventTrigger RoutedEvent="Button.Click" SourceName="W_Triger_btnCloseDrawertypeUserInfo">
+            <BeginStoryboard Storyboard="{StaticResource CloseUserInfoStoryboard}"/>
+        </EventTrigger>
+        
+    </Window.Triggers>
+    
+    
     <Border Margin="5" Background="White" CornerRadius="10">
         <!--边框阴影-->
         <Border.Effect>
@@ -120,14 +146,26 @@
                             <ImageBrush ImageSource="{Binding UserInfo.Avator}"/>
                         </Border.Background>
                     </Border>
-                    <TextBlock Text="{Binding UserInfo.UserName}" VerticalAlignment="Center" Foreground="White" Margin="10,0,0,0"/>
+                    <Button VerticalAlignment="Center" Cursor="Hand"
+                            Foreground="White" Margin="10,0,0,0"
+                            Name="W_Triger_btnDrawertypeUserInfo">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button" >
+                                <TextBlock Text="{Binding UserInfo.UserName}"/>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
                 </StackPanel>
 
                 <!--第二行左边-->
                 <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center">
-                    <RadioButton Content="首页" Style="{StaticResource NavButtonStyle}" IsChecked="True"/>
+                    <RadioButton Content="首页" Style="{StaticResource NavButtonStyle}" IsChecked="True"
+                                 Command="{Binding NvChangedCommand}"
+                                 CommandParameter="FirstPageView"/>
                     <RadioButton Content="关于我们" Style="{StaticResource NavButtonStyle}"/>
-                    <RadioButton Content="课程中心" Style="{StaticResource NavButtonStyle}"/>
+                    <RadioButton Content="课程中心" Style="{StaticResource NavButtonStyle}"
+                                 Command="{Binding NvChangedCommand}"
+                                 CommandParameter="CoursePageView"/>
                     <RadioButton Content="诚聘英才" Style="{StaticResource NavButtonStyle}"/>
                     <RadioButton Content="个人中心" Style="{StaticResource NavButtonStyle}"/>
                 </StackPanel>
@@ -137,8 +175,22 @@
                          Text="{Binding SerchText}" Foreground="White"/>
 
                 <ContentControl Grid.Row="2" Content="{Binding MainContent}"/>
-
             </Grid>
+            
+            <!--抽屉侧滑栏-->
+            <Border Background="White" Width="240" HorizontalAlignment="Right"
+                    CornerRadius="0,10,10,0">
+                <Border.RenderTransform>
+                    <TranslateTransform X="250" x:Name="DrawertypeUserInfo"/>
+                </Border.RenderTransform>
+                <Button Width="40" Height="40" BorderThickness="0" 
+                        VerticalAlignment="Top" HorizontalAlignment="Left"
+                        Content="&#xeca0;" FontFamily="../Assets/Fonts/#iconfont"
+                        Name="W_Triger_btnCloseDrawertypeUserInfo"
+                    />
+
+            </Border>
+            
         </Grid>
     </Border>
 </Window>

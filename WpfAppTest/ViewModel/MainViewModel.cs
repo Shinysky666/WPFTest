@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -39,11 +40,18 @@ namespace WpfAppTest.ViewModel
             this.NvChangedCommand = new CommandBase();
             this.NvChangedCommand.DoExecute = new Action<object>(DoNvChanged);
             this.NvChangedCommand.DoCanExecute = new Func<object, bool>((o) => true);
+
+            //首页加载
+            DoNvChanged("FirstPageView");
         }
             
         private void DoNvChanged(object obj)
         {
-
+            //反射自身程序集的内容 则不需要加载程序集
+            //Assembly assembly = Assembly.LoadFrom(@"WpfAppTest.View.dll");
+            Type type = Type.GetType("WpfAppTest.View." + obj.ToString());
+            ConstructorInfo ctinfo = type.GetConstructor(System.Type.EmptyTypes);
+            this.MainContent = (FrameworkElement)ctinfo.Invoke(null);
         }
 
     }
