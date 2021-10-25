@@ -178,16 +178,68 @@
             </Grid>
             
             <!--抽屉侧滑栏-->
-            <Border Background="White" Width="240" HorizontalAlignment="Right"
+            <Border Background="#EE444444" Width="240" HorizontalAlignment="Right"
                     CornerRadius="0,10,10,0">
+                <Border.Effect>
+                    <DropShadowEffect Color="Gray" ShadowDepth="0" BlurRadius="5" Opacity="0.3" Direction="180"/>
+                </Border.Effect>
+
                 <Border.RenderTransform>
                     <TranslateTransform X="250" x:Name="DrawertypeUserInfo"/>
                 </Border.RenderTransform>
-                <Button Width="40" Height="40" BorderThickness="0" 
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="230"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Button Width="40" Height="40" BorderThickness="0" 
                         VerticalAlignment="Top" HorizontalAlignment="Left"
                         Content="&#xeca0;" FontFamily="../Assets/Fonts/#iconfont"
                         Name="W_Triger_btnCloseDrawertypeUserInfo"
                     />
+                    <Border Width="80" Height="80" CornerRadius="40">
+                        <Border.Effect>
+                            <DropShadowEffect Color="White" ShadowDepth="0" BlurRadius="5" Opacity="0.3" Direction="0"/>
+                        </Border.Effect>
+                        <Border.Background>
+                            <ImageBrush ImageSource="{Binding UserInfo.Avator}"/>
+                        </Border.Background>
+                    </Border>
+
+                    <Grid Grid.Row="1" Margin="20,0">
+                        <Grid.Resources>
+                            <Style TargetType="RadioButton">
+                                <Setter Property="Foreground" Value="White"/>
+                                <Setter Property="FontSize" Value="14"/>
+                            </Style>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="Foreground" Value="White"/>
+                                <Setter Property="FontSize" Value="14"/>
+                            </Style>
+                        </Grid.Resources>
+                        
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40"/>
+                            <RowDefinition Height="40"/>
+                            <RowDefinition Height="40"/>
+                            <RowDefinition Height="40"/>
+                        </Grid.RowDefinitions>
+                        <StackPanel Orientation="Horizontal" >
+                            <TextBlock Text="用户名"/>
+                            <TextBlock Text="{Binding UserInfo.UserName}" Margin="10,0,0,0"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Grid.Row="1">
+                            <TextBlock Text="性   别"/>
+                            <RadioButton Content="男" Margin="10,2,0,0"/>
+                            <RadioButton Content="女" Margin="10,2,0,0"/>
+                        </StackPanel>
+
+                    </Grid>
+                    
+                    
+                    
+                </Grid>
 
             </Border>
             
