@@ -88,6 +88,29 @@
                                          Storyboard.TargetProperty="X"/>
                     </Storyboard>
 
+                    <!--抽屉侧滑栏性別模板-->
+                    <ControlTemplate TargetType="RadioButton" x:Key="GenderRadioButtonTemplate">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Border Width="14" Height="14" CornerRadius="7" BorderThickness="1" 
+                                    BorderBrush="#007DFA" Background="White" Margin="5,0" VerticalAlignment="Center">
+                                <Border Width="8" Height="8" CornerRadius="4" Background="#007DFA"
+                                        Name="GenderPoint" Visibility="Collapsed"/>
+                            </Border>
+                            <ContentControl Grid.Column="1" VerticalAlignment="Center"
+                                            Content="{TemplateBinding Content}"/>
+                        </Grid>
+
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="GenderPoint" Property="Visibility" Value="Visible"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+
                 </ResourceDictionary>
                              
             </ResourceDictionary.MergedDictionaries>
@@ -229,10 +252,12 @@
                             <TextBlock Text="用户名"/>
                             <TextBlock Text="{Binding UserInfo.UserName}" Margin="10,0,0,0"/>
                         </StackPanel>
-                        <StackPanel Orientation="Horizontal" Grid.Row="1">
+                        <StackPanel Orientation="Horizontal" Grid.Row="1" VerticalAlignment="Center">
                             <TextBlock Text="性   别"/>
-                            <RadioButton Content="男" Margin="10,2,0,0"/>
-                            <RadioButton Content="女" Margin="10,2,0,0"/>
+                            <RadioButton Content="男" Margin="10,0,0,0" 
+                                         Template="{StaticResource GenderRadioButtonTemplate}"/>
+                            <RadioButton Content="女" Margin="10,0,0,0" IsChecked="True"
+                                         Template="{StaticResource GenderRadioButtonTemplate}"/>
                         </StackPanel>
 
                     </Grid>
