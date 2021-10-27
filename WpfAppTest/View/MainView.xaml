@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:converter="clr-namespace:WpfAppTest.Converter"
         xmlns:local="clr-namespace:WpfAppTest.View"
         mc:Ignorable="d"
         Title="菜鸡平台" Height="800" Width="1250"
@@ -15,6 +16,8 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="../Assets/Styles/DefaultStyle.xaml"/>
                 <ResourceDictionary>
+                    <converter:GenderConcert x:Key="genderConcerter"/>
+
                     <Style TargetType="RadioButton" x:Key="NavButtonStyle">
                         <Setter Property="Foreground" Value="White"/>
                         <Setter Property="Template">
@@ -255,9 +258,11 @@
                         <StackPanel Orientation="Horizontal" Grid.Row="1" VerticalAlignment="Center">
                             <TextBlock Text="性   别"/>
                             <RadioButton Content="男" Margin="10,0,0,0" 
-                                         Template="{StaticResource GenderRadioButtonTemplate}"/>
-                            <RadioButton Content="女" Margin="10,0,0,0" IsChecked="True"
-                                         Template="{StaticResource GenderRadioButtonTemplate}"/>
+                                         Template="{StaticResource GenderRadioButtonTemplate}"
+                                         IsChecked="{Binding UserInfo.Gender, Converter={StaticResource genderConcerter},ConverterParameter=1}"/>
+                            <RadioButton Content="女" Margin="10,0,0,0" 
+                                         Template="{StaticResource GenderRadioButtonTemplate}"
+                                         IsChecked="{Binding UserInfo.Gender,Converter={StaticResource genderConcerter}, ConverterParameter=0}"/>
                         </StackPanel>
 
                     </Grid>
