@@ -262,7 +262,7 @@
                                          IsChecked="{Binding UserInfo.Gender, Converter={StaticResource genderConcerter},ConverterParameter=1}"/>
                             <RadioButton Content="女" Margin="10,0,0,0" 
                                          Template="{StaticResource GenderRadioButtonTemplate}"
-                                         IsChecked="{Binding UserInfo.Gender,Converter={StaticResource genderConcerter}, ConverterParameter=0}"/>
+                                         IsChecked="{Binding UserInfo.Gender, Converter={StaticResource genderConcerter}, ConverterParameter=0}"/>
                         </StackPanel>
 
                     </Grid>
