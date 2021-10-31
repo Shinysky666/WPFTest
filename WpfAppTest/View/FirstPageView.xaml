@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+             xmlns:yhjcontrol="clr-namespace:YHJ_WPF_Controls;assembly=YHJ_WPF-Controls"
              xmlns:local="clr-namespace:WpfAppTest.View"
              mc:Ignorable="d" 
              d:DesignHeight="800" d:DesignWidth="1000">
@@ -350,6 +351,7 @@
                         <TextBlock Text="最高使用率" HorizontalAlignment="Center" FontSize="12" Foreground="#3F4C5D"/>
                     </StackPanel>
 
+                    <yhjcontrol:Instrucment Margin="0,20,0,40"/>
 
                 </Grid>
                 

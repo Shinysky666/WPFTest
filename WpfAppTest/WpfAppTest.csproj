@@ -182,10 +182,18 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Assets\Images\cartoon1.jpeg" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\Images\avatar.png" />
     <Resource Include="Assets\Images\Logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\YHJ_WPF-Controls\YHJ_WPF-Controls.csproj">
+      <Project>{2d2b4868-576d-49aa-b697-77d35e3f6407}</Project>
+      <Name>YHJ_WPF-Controls</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

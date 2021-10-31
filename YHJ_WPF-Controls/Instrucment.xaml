@@ -1,0 +1,15 @@
+﻿<UserControl x:Class="YHJ_WPF_Controls.Instrucment"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:YHJ_WPF_Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Ellipse Fill="Orange" Name="backEllipse"/>
+        <!--绑定画布与Ellipse同等大小-->
+        <Canvas Name="mainCanvas" 
+                Width="{Binding Width,ElementName=backEllipse}" Height="{Binding Height,ElementName=backEllipse}"/>
+    </Grid>
+</UserControl>

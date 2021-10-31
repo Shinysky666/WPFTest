@@ -1,0 +1,13 @@
+D:\Study\WPFTest\YHJ_WPF-Controls\bin\Debug\YHJ_WPF-Controls.dll
+D:\Study\WPFTest\YHJ_WPF-Controls\bin\Debug\YHJ_WPF-Controls.pdb
+D:\Study\WPFTest\YHJ_WPF-Controls\obj\Debug\Instrucment.g.cs
+D:\Study\WPFTest\YHJ_WPF-Controls\obj\Debug\YHJ_WPF-Controls_MarkupCompile.cache
+D:\Study\WPFTest\YHJ_WPF-Controls\obj\Debug\YHJ_WPF-Controls_MarkupCompile.lref
+D:\Study\WPFTest\YHJ_WPF-Controls\obj\Debug\Instrucment.baml
+D:\Study\WPFTest\YHJ_WPF-Controls\obj\Debug\YHJ_WPF-Controls.g.resources
+D:\Study\WPFTest\YHJ_WPF-Controls\obj\Debug\YHJ_WPF_Controls.Properties.Resources.resources
+D:\Study\WPFTest\YHJ_WPF-Controls\obj\Debug\YHJ_WPF-Controls.csproj.GenerateResource.cache
+D:\Study\WPFTest\YHJ_WPF-Controls\obj\Debug\YHJ_WPF-Controls.csproj.CoreCompileInputs.cache
+D:\Study\WPFTest\YHJ_WPF-Controls\obj\Debug\YHJ_WPF-Controls.dll
+D:\Study\WPFTest\YHJ_WPF-Controls\obj\Debug\YHJ_WPF-Controls.pdb
+D:\Study\WPFTest\YHJ_WPF-Controls\obj\Debug\YHJ_WPF-Controls.csproj.AssemblyReference.cache

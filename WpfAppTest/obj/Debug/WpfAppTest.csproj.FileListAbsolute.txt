@@ -173,3 +173,11 @@ D:\Study\WPFTest\WpfAppTest\obj\Debug\View\CoursePageView.g.cs
 D:\Study\WPFTest\WpfAppTest\obj\Debug\View\FirstPageView.g.cs
 D:\Study\WPFTest\WpfAppTest\obj\Debug\View\CoursePageView.baml
 D:\Study\WPFTest\WpfAppTest\obj\Debug\View\FirstPageView.baml
+D:\Study\WPFTest\WpfAppTest\bin\Debug\LiveCharts.dll
+D:\Study\WPFTest\WpfAppTest\bin\Debug\LiveCharts.Wpf.dll
+D:\Study\WPFTest\WpfAppTest\bin\Debug\LiveCharts.pdb
+D:\Study\WPFTest\WpfAppTest\bin\Debug\LiveCharts.xml
+D:\Study\WPFTest\WpfAppTest\bin\Debug\LiveCharts.Wpf.pdb
+D:\Study\WPFTest\WpfAppTest\bin\Debug\LiveCharts.Wpf.xml
+D:\Study\WPFTest\WpfAppTest\bin\Debug\YHJ_WPF-Controls.dll
+D:\Study\WPFTest\WpfAppTest\bin\Debug\YHJ_WPF-Controls.pdb

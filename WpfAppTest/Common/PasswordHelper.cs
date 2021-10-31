@@ -17,6 +17,7 @@ namespace WpfAppTest.Common
             DependencyProperty.RegisterAttached("Password", typeof(string), typeof(PasswordHelper), new
                 FrameworkPropertyMetadata("", new PropertyChangedCallback(OnPropertyChanged)));
 
+        //对注册的Password属性进行 Get和Set操作
         public static string GetPassword(DependencyObject d)
         {
             return d.GetValue(PasswordProperty).ToString();
