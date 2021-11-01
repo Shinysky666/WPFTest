@@ -54,6 +54,7 @@ namespace YHJ_WPF_Controls
             this.backEllipse.Height = minsize;
         }
 
+        //画布上画线
         public void Refresh()
         {
             double radius = this.backEllipse.Width / 2;//半径
@@ -61,11 +62,21 @@ namespace YHJ_WPF_Controls
             this.mainCanvas.Children.Clear();//等待最后的一个数值进行绘画
 
             double min = 0, max = 100;
-            double strp = 270.0 / (max - min);//获取每一步的度数
+            double step = 270.0 / (max - min);//获取每一步的度数
 
             for (int i = 0; i < max-min; i++)
             {
+                //起始坐标点为画布坐上角  x轴需要顺时针旋转45度
+                Line lineScale = new Line();
+                lineScale.X1 = radius - (radius - 20) * Math.Cos((i * step - 45) * Math.PI / 180);
+                lineScale.Y1 = radius - (radius - 20) * Math.Sin((i * step - 45) * Math.PI / 180);
+                lineScale.X2 = radius - (radius) * Math.Cos((i * step - 45) * Math.PI / 180);
+                lineScale.Y2 = radius - (radius) * Math.Sin((i * step - 45) * Math.PI / 180);
 
+                lineScale.Stroke = Brushes.White;//线条为白色
+                lineScale.StrokeThickness = 2;
+
+                this.mainCanvas.Children.Add(lineScale);
             }
         }
 }

@@ -351,7 +351,8 @@
                         <TextBlock Text="最高使用率" HorizontalAlignment="Center" FontSize="12" Foreground="#3F4C5D"/>
                     </StackPanel>
 
-                    <yhjcontrol:Instrucment Margin="0,20,0,40"/>
+                    <!--值改变画线条-->
+                    <yhjcontrol:Instrucment Margin="0,20,0,40" Value="0"/>
 
                 </Grid>
                 
