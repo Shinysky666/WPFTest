@@ -63,18 +63,39 @@ namespace YHJ_WPF_Controls
 
             double min = 0, max = 100;
             double step = 270.0 / (max - min);//获取每一步的度数
+            int scaletext = (int)min;
 
-            for (int i = 0; i < max-min; i++)
+            for (int i = 0; i <= max-min; i++)
             {
                 //起始坐标点为画布坐上角  x轴需要顺时针旋转45度
                 Line lineScale = new Line();
-                lineScale.X1 = radius - (radius - 20) * Math.Cos((i * step - 45) * Math.PI / 180);
-                lineScale.Y1 = radius - (radius - 20) * Math.Sin((i * step - 45) * Math.PI / 180);
-                lineScale.X2 = radius - (radius) * Math.Cos((i * step - 45) * Math.PI / 180);
-                lineScale.Y2 = radius - (radius) * Math.Sin((i * step - 45) * Math.PI / 180);
+
+                if (i % 10 == 0)
+                {
+                    lineScale.X1 = radius - (radius - 20) * Math.Cos((i * step - 45) * Math.PI / 180);
+                    lineScale.Y1 = radius - (radius - 20) * Math.Sin((i * step - 45) * Math.PI / 180);
+                    lineScale.X2 = radius - (radius - 8) * Math.Cos((i * step - 45) * Math.PI / 180);
+                    lineScale.Y2 = radius - (radius - 8) * Math.Sin((i * step - 45) * Math.PI / 180);
+
+                    //设置刻度值
+                    TextBlock textscale = new TextBlock();
+                    textscale.Text = (scaletext + step * i).ToString();
+                    textscale.Foreground = Brushes.White;
+                    Canvas.SetLeft(textscale, radius - (radius - 20) * Math.Cos((i * step - 45) * Math.PI / 180));
+                    Canvas.SetTop(textscale, radius - (radius - 20) * Math.Sin((i * step - 45) * Math.PI / 180));
+                    this.mainCanvas.Children.Add(textscale);
+
+                }
+                else
+                {
+                    lineScale.X1 = radius - (radius - 13) * Math.Cos((i * step - 45) * Math.PI / 180);
+                    lineScale.Y1 = radius - (radius - 13) * Math.Sin((i * step - 45) * Math.PI / 180);
+                    lineScale.X2 = radius - (radius - 8) * Math.Cos((i * step - 45) * Math.PI / 180);
+                    lineScale.Y2 = radius - (radius - 8) * Math.Sin((i * step - 45) * Math.PI / 180);
+                }
 
                 lineScale.Stroke = Brushes.White;//线条为白色
-                lineScale.StrokeThickness = 2;
+                lineScale.StrokeThickness = 1;
 
                 this.mainCanvas.Children.Add(lineScale);
             }
