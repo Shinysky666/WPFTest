@@ -11,5 +11,8 @@
         <!--绑定画布与Ellipse同等大小-->
         <Canvas Name="mainCanvas" 
                 Width="{Binding Width,ElementName=backEllipse}" Height="{Binding Height,ElementName=backEllipse}"/>
+        <Path Data="" Stroke="White" StrokeThickness="4" Name="circle"
+              HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
     </Grid>
 </UserControl>

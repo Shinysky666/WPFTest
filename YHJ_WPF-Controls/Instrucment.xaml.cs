@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -64,13 +65,14 @@ namespace YHJ_WPF_Controls
             double min = 0, max = 100;
             double step = 270.0 / (max - min);//获取每一步的度数
             int scaletext = (int)min;
+            int scaleAreaCount = 10;//分成多少个区域
 
             for (int i = 0; i <= max-min; i++)
             {
                 //起始坐标点为画布坐上角  x轴需要顺时针旋转45度
                 Line lineScale = new Line();
 
-                if (i % 10 == 0)
+                if (i % scaleAreaCount == 0)
                 {
                     lineScale.X1 = radius - (radius - 20) * Math.Cos((i * step - 45) * Math.PI / 180);
                     lineScale.Y1 = radius - (radius - 20) * Math.Sin((i * step - 45) * Math.PI / 180);
@@ -79,10 +81,14 @@ namespace YHJ_WPF_Controls
 
                     //设置刻度值
                     TextBlock textscale = new TextBlock();
-                    textscale.Text = (scaletext + step * i).ToString();
+                    textscale.Width = 34;
+                    textscale.TextAlignment = TextAlignment.Center;
+                    textscale.FontSize = 16;
+                    textscale.Text = (scaletext + (max - min) / scaleAreaCount * i /scaleAreaCount).ToString();
                     textscale.Foreground = Brushes.White;
-                    Canvas.SetLeft(textscale, radius - (radius - 20) * Math.Cos((i * step - 45) * Math.PI / 180));
-                    Canvas.SetTop(textscale, radius - (radius - 20) * Math.Sin((i * step - 45) * Math.PI / 180));
+
+                    Canvas.SetLeft(textscale, radius - (radius - 36) * Math.Cos((i * step - 45) * Math.PI / 180) - 17);
+                    Canvas.SetTop(textscale, radius - (radius - 36) * Math.Sin((i * step - 45) * Math.PI / 180) - 10);
                     this.mainCanvas.Children.Add(textscale);
 
                 }
@@ -96,9 +102,15 @@ namespace YHJ_WPF_Controls
 
                 lineScale.Stroke = Brushes.White;//线条为白色
                 lineScale.StrokeThickness = 1;
-
                 this.mainCanvas.Children.Add(lineScale);
             }
+
+            //绘制圆弧 通过替换数据达到
+            string sData = "M {0} {1} A{0} {0} 0 1 1 {1} {2}";
+            sData = string.Format(sData, radius / 2, radius, radius * 1.5);
+            var converter = TypeDescriptor.GetConverter(typeof(Geometry));
+            this.circle.Data = (Geometry)converter.ConvertFrom(sData);
+
         }
 }
 }
