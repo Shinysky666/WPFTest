@@ -111,6 +111,10 @@ namespace YHJ_WPF_Controls
             var converter = TypeDescriptor.GetConverter(typeof(Geometry));
             this.circle.Data = (Geometry)converter.ConvertFrom(sData);
 
+            //绘制指针
+            sData = "M {0} {1} {1} {2} {1} {3}";
+            sData = string.Format(sData, 0, radius, radius - 8, radius + 8);
+            this.pointer.Data = (Geometry)converter.ConvertFrom(sData);
         }
 }
 }

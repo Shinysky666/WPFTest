@@ -11,8 +11,23 @@
         <!--绑定画布与Ellipse同等大小-->
         <Canvas Name="mainCanvas" 
                 Width="{Binding Width,ElementName=backEllipse}" Height="{Binding Height,ElementName=backEllipse}"/>
-        <Path Data="" Stroke="White" StrokeThickness="4" Name="circle"
-              HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+        <!--绘制圆弧 RotateTransform旋转  RenderTransformOrigin="x,y"以这个(x,y)这个点的中心进行旋转-->
+        <Path Data="" Name="circle" Stroke="White" StrokeThickness="4"  RenderTransformOrigin="0.5,0.5"
+              Width="{Binding Width,ElementName=backEllipse}" Height="{Binding Height,ElementName=backEllipse}"
+              StrokeStartLineCap="Round" StrokeEndLineCap="Round">
+            <Path.RenderTransform>
+                <RotateTransform Angle="-45"/>
+            </Path.RenderTransform>
+        </Path>
+        
+        <!--绘制指针-->
+        <Path Data="" Name="pointer" Fill="Green" RenderTransformOrigin="0.5,0.5"
+              Width="{Binding Width,ElementName=backEllipse}" Height="{Binding Height,ElementName=backEllipse}">
+            <Path.RenderTransform>
+                <RotateTransform Angle="0"/>
+            </Path.RenderTransform>
+        </Path>
 
     </Grid>
 </UserControl>
