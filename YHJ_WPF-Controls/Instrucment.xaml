@@ -24,10 +24,21 @@
         <!--绘制指针-->
         <Path Data="" Name="pointer" Fill="Green" RenderTransformOrigin="0.5,0.5"
               Width="{Binding Width,ElementName=backEllipse}" Height="{Binding Height,ElementName=backEllipse}">
+            <!--根据绑定的Value值 通过动画改变其面板角度而不是 改变绘制的指针(步骤繁杂)-->
             <Path.RenderTransform>
-                <RotateTransform Angle="0"/>
+                <RotateTransform Angle="-45" x:Name="rtpointer"/>
             </Path.RenderTransform>
         </Path>
+        
+        <!--绘制指针圆心-->
+        <Border Width="30" Height="30" CornerRadius="15">
+            <Border.Background>
+                <RadialGradientBrush>
+                    <GradientStop Color="White" Offset="0.583"/>
+                    <GradientStop Color="Gray" Offset="1"/>
+                </RadialGradientBrush>
+            </Border.Background>
+        </Border>
 
     </Grid>
 </UserControl>

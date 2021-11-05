@@ -352,7 +352,7 @@
                     </StackPanel>
 
                     <!--值改变画线条-->
-                    <yhjcontrol:Instrucment Margin="0,20,0,40" Value="1"/>
+                    <yhjcontrol:Instrucment Margin="0,20,0,40" Value="100"/>
 
                 </Grid>
                 

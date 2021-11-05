@@ -10,6 +10,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -113,8 +114,14 @@ namespace YHJ_WPF_Controls
 
             //绘制指针
             sData = "M {0} {1} {1} {2} {1} {3}";
-            sData = string.Format(sData, 0, radius, radius - 8, radius + 8);
+            sData = string.Format(sData, radius * 0.3, radius, radius - 5, radius + 5);
             this.pointer.Data = (Geometry)converter.ConvertFrom(sData);
+
+            //根据绑定的Value值 通过动画改变其面板角度 而不是改变绘制的指针(步骤繁杂)
+            //DoubleAnimation(旋转的角度值,动画的持续时间)
+            DoubleAnimation da = new DoubleAnimation((this.Value * step) - 45,
+                new Duration(TimeSpan.FromMilliseconds(500)));
+            this.rtpointer.BeginAnimation(RotateTransform.AngleProperty, da);
         }
-}
+    }
 }
