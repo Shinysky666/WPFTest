@@ -352,13 +352,58 @@
                     </StackPanel>
 
                     <!--值改变画线条-->
-                    <yhjcontrol:Instrucment Margin="0,20,0,40" Value="100"/>
+                    <yhjcontrol:Instrucment Margin="0,20,0,40" 
+                                            PlateBackground="Orange"
+                                            Value="{Binding InstrucmentValue}"
+                                            MiniValue="0"
+                                            MaxiValue="100"                                         
+                                            Interval="10"
+                                            ScaleSize="16"
+                                            Scalebrush="White"/>
 
                 </Grid>
                 
             </Grid>
-            
+
         </Grid>
-             
+
+        <!--第三行内容-->
+        <Grid Margin="10,0" Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <!--学员监控情况-->
+            <TextBlock Text="学员监控情况" Foreground="#3F4C5D" VerticalAlignment="Center"
+                           FontSize="15" FontWeight="Bold"/>
+            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Right">
+                    <Hyperlink>详情</Hyperlink>
+            </TextBlock>
+
+            <StackPanel Grid.Row="1">
+                <Border Background="White" CornerRadius="10" Margin="0,5">
+                    <Border.Effect>
+                        <DropShadowEffect Color="Gray" ShadowDepth="0" BlurRadius="10" Opacity="0.2" Direction="0"/>
+                    </Border.Effect>
+                    <Grid Height="70">
+                        <Grid.ColumnDefinitions>
+
+                        </Grid.ColumnDefinitions>
+                    </Grid>
+                </Border>
+                <Border Background="White" CornerRadius="10" Margin="0,5">
+                    <Border.Effect>
+                        <DropShadowEffect Color="Gray" ShadowDepth="0" BlurRadius="10" Opacity="0.2" Direction="0"/>
+                    </Border.Effect>
+                    <Grid Height="70">
+                        <Grid.ColumnDefinitions>
+
+                        </Grid.ColumnDefinitions>
+                    </Grid>
+                </Border>
+            </StackPanel>
+        </Grid>
+
     </Grid>
 </UserControl>

@@ -7,7 +7,8 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <Ellipse Fill="Orange" Name="backEllipse"/>
+        <Ellipse Name="backEllipse"
+                 Fill="{Binding PlateBackground,RelativeSource={RelativeSource AncestorType=UserControl, Mode=FindAncestor}}"/>
         <!--绑定画布与Ellipse同等大小-->
         <Canvas Name="mainCanvas" 
                 Width="{Binding Width,ElementName=backEllipse}" Height="{Binding Height,ElementName=backEllipse}"/>
