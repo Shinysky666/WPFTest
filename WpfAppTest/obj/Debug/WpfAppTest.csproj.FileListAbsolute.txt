@@ -181,3 +181,15 @@ D:\Study\WPFTest\WpfAppTest\bin\Debug\LiveCharts.Wpf.pdb
 D:\Study\WPFTest\WpfAppTest\bin\Debug\LiveCharts.Wpf.xml
 D:\Study\WPFTest\WpfAppTest\bin\Debug\YHJ_WPF-Controls.dll
 D:\Study\WPFTest\WpfAppTest\bin\Debug\YHJ_WPF-Controls.pdb
+E:\Study\WPFTest\WpfAppTest\bin\Debug\LiveCharts.dll
+E:\Study\WPFTest\WpfAppTest\bin\Debug\LiveCharts.Wpf.dll
+E:\Study\WPFTest\WpfAppTest\bin\Debug\YHJ_WPF-Controls.dll
+E:\Study\WPFTest\WpfAppTest\bin\Debug\YHJ_WPF-Controls.pdb
+E:\Study\WPFTest\WpfAppTest\bin\Debug\LiveCharts.pdb
+E:\Study\WPFTest\WpfAppTest\bin\Debug\LiveCharts.xml
+E:\Study\WPFTest\WpfAppTest\bin\Debug\LiveCharts.Wpf.pdb
+E:\Study\WPFTest\WpfAppTest\bin\Debug\LiveCharts.Wpf.xml
+E:\Study\WPFTest\WpfAppTest\obj\Debug\View\CoursePageView.g.cs
+E:\Study\WPFTest\WpfAppTest\obj\Debug\View\FirstPageView.g.cs
+E:\Study\WPFTest\WpfAppTest\obj\Debug\View\CoursePageView.baml
+E:\Study\WPFTest\WpfAppTest\obj\Debug\View\FirstPageView.baml

@@ -11,3 +11,16 @@ D:\Study\WPFTest\YHJ_WPF-Controls\obj\Debug\YHJ_WPF-Controls.csproj.CoreCompileI
 D:\Study\WPFTest\YHJ_WPF-Controls\obj\Debug\YHJ_WPF-Controls.dll
 D:\Study\WPFTest\YHJ_WPF-Controls\obj\Debug\YHJ_WPF-Controls.pdb
 D:\Study\WPFTest\YHJ_WPF-Controls\obj\Debug\YHJ_WPF-Controls.csproj.AssemblyReference.cache
+E:\Study\WPFTest\YHJ_WPF-Controls\bin\Debug\YHJ_WPF-Controls.dll
+E:\Study\WPFTest\YHJ_WPF-Controls\bin\Debug\YHJ_WPF-Controls.pdb
+E:\Study\WPFTest\YHJ_WPF-Controls\obj\Debug\YHJ_WPF-Controls.csproj.AssemblyReference.cache
+E:\Study\WPFTest\YHJ_WPF-Controls\obj\Debug\Instrucment.g.cs
+E:\Study\WPFTest\YHJ_WPF-Controls\obj\Debug\YHJ_WPF-Controls_MarkupCompile.cache
+E:\Study\WPFTest\YHJ_WPF-Controls\obj\Debug\YHJ_WPF-Controls_MarkupCompile.lref
+E:\Study\WPFTest\YHJ_WPF-Controls\obj\Debug\Instrucment.baml
+E:\Study\WPFTest\YHJ_WPF-Controls\obj\Debug\YHJ_WPF-Controls.g.resources
+E:\Study\WPFTest\YHJ_WPF-Controls\obj\Debug\YHJ_WPF_Controls.Properties.Resources.resources
+E:\Study\WPFTest\YHJ_WPF-Controls\obj\Debug\YHJ_WPF-Controls.csproj.GenerateResource.cache
+E:\Study\WPFTest\YHJ_WPF-Controls\obj\Debug\YHJ_WPF-Controls.csproj.CoreCompileInputs.cache
+E:\Study\WPFTest\YHJ_WPF-Controls\obj\Debug\YHJ_WPF-Controls.dll
+E:\Study\WPFTest\YHJ_WPF-Controls\obj\Debug\YHJ_WPF-Controls.pdb

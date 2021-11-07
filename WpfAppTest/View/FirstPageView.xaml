@@ -4,10 +4,11 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+             xmlns:lvcs ="clr-namespace:LiveCharts;assembly=LiveCharts"
              xmlns:yhjcontrol="clr-namespace:YHJ_WPF_Controls;assembly=YHJ_WPF-Controls"
              xmlns:local="clr-namespace:WpfAppTest.View"
              mc:Ignorable="d" 
-             d:DesignHeight="800" d:DesignWidth="1000">
+             d:DesignHeight="1000" d:DesignWidth="1000">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="160"/>
@@ -381,28 +382,69 @@
                     <Hyperlink>详情</Hyperlink>
             </TextBlock>
 
-            <StackPanel Grid.Row="1">
-                <Border Background="White" CornerRadius="10" Margin="0,5">
-                    <Border.Effect>
-                        <DropShadowEffect Color="Gray" ShadowDepth="0" BlurRadius="10" Opacity="0.2" Direction="0"/>
-                    </Border.Effect>
-                    <Grid Height="70">
-                        <Grid.ColumnDefinitions>
+            <ItemsControl ItemsSource="{Binding CourseSeriesList}" Grid.Row="1">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <VirtualizingStackPanel/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border Background="White" CornerRadius="10" Margin="0,5">
+                            <Border.Effect>
+                                <DropShadowEffect Color="Gray" ShadowDepth="0" BlurRadius="10" Opacity="0.2" Direction="0"/>
+                            </Border.Effect>
+                            <Grid Height="70">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition Width="3.5*"/>
+                                </Grid.ColumnDefinitions>
 
-                        </Grid.ColumnDefinitions>
-                    </Grid>
-                </Border>
-                <Border Background="White" CornerRadius="10" Margin="0,5">
-                    <Border.Effect>
-                        <DropShadowEffect Color="Gray" ShadowDepth="0" BlurRadius="10" Opacity="0.2" Direction="0"/>
-                    </Border.Effect>
-                    <Grid Height="70">
-                        <Grid.ColumnDefinitions>
+                                <TextBlock Text="{Binding CourseName}" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                   Foreground="#444" FontSize="12"/>
 
-                        </Grid.ColumnDefinitions>
-                    </Grid>
-                </Border>
-            </StackPanel>
+                                <lvc:PieChart Grid.Column="1" LegendLocation="Right" InnerRadius="15">
+                                    <lvc:PieChart.Series>
+                                        <lvcs:SeriesCollection>
+                                            <lvc:PieSeries Title="111" Values="5" DataLabels="False"/>
+                                            <lvc:PieSeries Title="222" Values="25" DataLabels="False"/>
+                                            <lvc:PieSeries Title="333" Values="35" DataLabels="False"/>
+                                        </lvcs:SeriesCollection>
+                                    </lvc:PieChart.Series>
+                                    <lvc:PieChart.ChartLegend>
+                                        <lvc:DefaultLegend BulletSize="10"/>
+                                    </lvc:PieChart.ChartLegend>
+                                    <lvc:PieChart.DataTooltip>
+                                        <lvc:DefaultLegend BulletSize="10"/>
+                                    </lvc:PieChart.DataTooltip>
+                                </lvc:PieChart>
+
+                                <UniformGrid Columns="5" Grid.Column="2">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition/>
+                                            <RowDefinition/>
+                                        </Grid.RowDefinitions>
+                                        <TextBlock Text="云玩家"/>
+                                        <TextBlock Text="|" Grid.Column="1"/>
+                                        <TextBlock Text="161" Grid.Row="1"/>
+                                        <TextBlock Text="75%" Grid.Row="1" Grid.Column="1"/>
+                                    </Grid>
+                                </UniformGrid>
+
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+            
+            
+            
         </Grid>
 
     </Grid>

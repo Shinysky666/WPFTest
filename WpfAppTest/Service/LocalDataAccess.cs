@@ -102,6 +102,10 @@ namespace WpfAppTest.Service
 
                     return userinfo;
                 }
+                else
+                {
+                    Console.WriteLine("无法连接数据库");
+                }
             }
             catch(Exception e)
             {

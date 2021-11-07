@@ -105,6 +105,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Converter\GenderConcert.cs" />
+    <Compile Include="Model\CourseSeriesModel.cs" />
+    <Compile Include="Model\SeriesModel.cs" />
     <Compile Include="Model\UserModel.cs" />
     <Compile Include="ViewModel\FirstPageViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />

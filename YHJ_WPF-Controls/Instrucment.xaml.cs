@@ -157,7 +157,7 @@ namespace YHJ_WPF_Controls
             }
 
             double scaletext = min;
-            Console.WriteLine(scaletext);
+
             for (int i = 0; i <= scaleAreaCount; i++)
             {
                 step = 270.0 / scaleAreaCount;
