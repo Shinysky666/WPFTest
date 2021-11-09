@@ -104,6 +104,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Converter\BoolToArrowConverter.cs" />
     <Compile Include="Converter\GenderConcert.cs" />
     <Compile Include="Model\CourseSeriesModel.cs" />
     <Compile Include="Model\SeriesModel.cs" />

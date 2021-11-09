@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-E:\Study\WPFTest\WpfAppTest\obj\Debug\
+D:\Study\WPFTest\WpfAppTest\obj\Debug\
 WpfAppTest
 none
 false
 DEBUG;TRACE
-E:\Study\WPFTest\WpfAppTest\App.xaml
+D:\Study\WPFTest\WpfAppTest\App.xaml
 5-483781679
 
-24-1684743655
-138-1024471637
+25-351010588
+138-76928097
 Assets\Styles\DefaultStyle.xaml;View\CoursePageView.xaml;View\FirstPageView.xaml;View\LoginView.xaml;View\MainView.xaml;
 
-False
+True
 
