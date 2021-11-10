@@ -99,6 +99,68 @@ namespace WpfAppTest.ViewModel
                 }
 
             });
+
+            CourseSeriesList.Add(new CourseSeriesModel
+            {
+                CourseName = "铲车人",
+                Seriescollection = new LiveCharts.SeriesCollection {
+                    new PieSeries{
+                    Title = "我是头部",
+                    Values = new ChartValues<ObservableValue>{ new ObservableValue(111)},
+                    DataLabels = false
+                    },
+                    new PieSeries{
+                    Title = "我是根部",
+                    Values = new ChartValues<ObservableValue>{ new ObservableValue(55)},
+                    DataLabels = false
+                    },
+                    new PieSeries{
+                    Title = "我是尾部",
+                    Values = new ChartValues<ObservableValue>{ new ObservableValue(55)},
+                    DataLabels = false
+                    }
+                },
+                SeriesList = new ObservableCollection<SeriesModel>
+                {
+                    new SeriesModel{SeriesName="JAVA",CurrentValue=121,IsGrowing=false,ChangeRate=75},
+                    new SeriesModel{SeriesName="Python",CurrentValue=80,IsGrowing=false,ChangeRate=-5},
+                    new SeriesModel{SeriesName="Go",CurrentValue=75,IsGrowing=false,ChangeRate=3},
+                    new SeriesModel{SeriesName="C#",CurrentValue=333,IsGrowing=true,ChangeRate=75},
+                    new SeriesModel{SeriesName="C++",CurrentValue=44,IsGrowing=false,ChangeRate=2},
+                }
+
+            });
+
+            CourseSeriesList.Add(new CourseSeriesModel
+            {
+                CourseName = "铲车人",
+                Seriescollection = new LiveCharts.SeriesCollection {
+                    new PieSeries{
+                    Title = "我是头部",
+                    Values = new ChartValues<ObservableValue>{ new ObservableValue(111)},
+                    DataLabels = false
+                    },
+                    new PieSeries{
+                    Title = "我是根部",
+                    Values = new ChartValues<ObservableValue>{ new ObservableValue(55)},
+                    DataLabels = false
+                    },
+                    new PieSeries{
+                    Title = "我是尾部",
+                    Values = new ChartValues<ObservableValue>{ new ObservableValue(55)},
+                    DataLabels = false
+                    }
+                },
+                SeriesList = new ObservableCollection<SeriesModel>
+                {
+                    new SeriesModel{SeriesName="JAVA",CurrentValue=121,IsGrowing=false,ChangeRate=75},
+                    new SeriesModel{SeriesName="Python",CurrentValue=80,IsGrowing=false,ChangeRate=-5},
+                    new SeriesModel{SeriesName="Go",CurrentValue=75,IsGrowing=false,ChangeRate=3},
+                    new SeriesModel{SeriesName="C#",CurrentValue=333,IsGrowing=true,ChangeRate=75},
+                    new SeriesModel{SeriesName="C++",CurrentValue=44,IsGrowing=false,ChangeRate=2},
+                }
+
+            });
         }
     }
 }
