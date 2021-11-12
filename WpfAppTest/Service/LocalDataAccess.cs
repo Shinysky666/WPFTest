@@ -1,4 +1,7 @@
-﻿using MySql.Data.MySqlClient;
+﻿using LiveCharts;
+using LiveCharts.Defaults;
+using LiveCharts.Wpf;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -7,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WpfAppTest.Common;
+using WpfAppTest.Model;
 using WpfAppTest.Service.DataEntity;
 
 namespace WpfAppTest.Service
@@ -108,6 +112,81 @@ namespace WpfAppTest.Service
                 }
             }
             catch(Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                this.Dispose();
+            }
+            return null;
+        }
+
+        public List<CourseSeriesModel> GetCoursePlayRecord()
+        {
+            try
+            {
+                List<CourseSeriesModel> cModelList = new List<CourseSeriesModel>();
+                if (DBConnection())
+                {
+                    string sql =
+                        @"select a.course_name,a.course_id,b.play_count,b.is_growing,b.growing_rate,c.platform_name
+                          from courses a
+                          left
+                          join play_record b
+                          on a.course_id = b.course_id
+                          left
+                          join platforms c
+                          on b.platform_id = c.platform_id";
+
+                    adapter = new MySqlDataAdapter(sql, connection);
+
+                    DataTable table = new DataTable();
+                    int count = adapter.Fill(table);
+
+                    string course_id = "";
+                    CourseSeriesModel cModel = null;
+
+                    foreach (DataRow dr in table.AsEnumerable())
+                    {
+                        string tempid = dr.Field<string>("course_id");
+                        if(course_id != tempid)
+                        {
+                            cModel = new CourseSeriesModel();                   
+                            cModel.CourseName = dr.Field<string>("course_name");
+                            cModel.Seriescollection = new LiveCharts.SeriesCollection();
+                            cModel.SeriesList = new System.Collections.ObjectModel.ObservableCollection<SeriesModel>();
+
+                            cModelList.Add(cModel);                         
+                        }
+
+                        if (cModel != null)
+                        {
+                            cModel.Seriescollection.Add(new PieSeries
+                            {
+                                Title = dr.Field<string>("platform_name"),
+                                Values = new ChartValues<ObservableValue> { new ObservableValue(dr.Field<double>("play_count")) },
+                                DataLabels = false
+                            });
+
+                            cModel.SeriesList.Add(new SeriesModel() 
+                            {
+                                SeriesName = dr.Field<string>("platform_name"),
+                                CurrentValue = dr.Field<int>("play_count"),
+                                IsGrowing = dr.Field<Int32>("is_growing") == 1,
+                                ChangeRate = dr.Field<double>("growing_rate")
+
+                            });
+                        }
+                    }
+                    return cModelList;
+                }
+                else
+                {
+                    Console.WriteLine("无法连接数据库");
+                }
+            }
+            catch (Exception e)
             {
                 throw e;
             }

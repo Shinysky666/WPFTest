@@ -66,7 +66,7 @@ namespace WpfAppTest.ViewModel
             }
         }
 
-        //初始化学员监控情况内容
+        //初始化学员监控情况内容 SeriesList与Seriescollection应一一对应
         public void InitCourseSeriesList()
         {
             CourseSeriesList.Add(new CourseSeriesModel 
