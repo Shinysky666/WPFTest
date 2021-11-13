@@ -107,9 +107,11 @@
     <Compile Include="Converter\BoolToArrowConverter.cs" />
     <Compile Include="Converter\BoolToColorConverter.cs" />
     <Compile Include="Converter\GenderConcert.cs" />
+    <Compile Include="Model\CategoryItemModel.cs" />
     <Compile Include="Model\CourseSeriesModel.cs" />
     <Compile Include="Model\SeriesModel.cs" />
     <Compile Include="Model\UserModel.cs" />
+    <Compile Include="ViewModel\CoursePageViewModel.cs" />
     <Compile Include="ViewModel\FirstPageViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="View\CoursePageView.xaml.cs">

@@ -113,7 +113,6 @@
                             </StackPanel>
                         </StackPanel>
 
-
                     </Grid>
                 </Border>
 
@@ -395,7 +394,7 @@
                 </TextBlock>
 
 
-                <ItemsControl ItemsSource="{Binding CourseSeriesList}" Grid.Row="1" Grid.ColumnSpan="2">
+                <ItemsControl ItemsSource="{Binding CourseSeriesList}" Grid.Row="1" Grid.ColumnSpan="2" Margin="0,10,0,-10">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
                             <VirtualizingStackPanel/>
@@ -435,7 +434,8 @@
                                     <ItemsControl Grid.Column="2" ItemsSource="{Binding SeriesList}" Margin="10,0,0,0">
                                         <ItemsControl.ItemsPanel>
                                             <ItemsPanelTemplate>
-                                                <UniformGrid Columns="5"/>
+                                                <UniformGrid Columns="{Binding DataContext.ItemCount,
+                                                    RelativeSource={RelativeSource AncestorType=UserControl, Mode=FindAncestor}}"/>
                                             </ItemsPanelTemplate>
                                         </ItemsControl.ItemsPanel>
                                         <ItemsControl.ItemTemplate>
@@ -450,17 +450,16 @@
                                                         <RowDefinition MinHeight="24"/>
                                                     </Grid.RowDefinitions>
                                                     <TextBlock Text="{Binding SeriesName}" VerticalAlignment="Center"/>
-                                                    <TextBlock Grid.Column="1" Margin="5,0,0,0" VerticalAlignment="Center"
+                                                    <TextBlock Grid.Column="1" Margin="15,0,0,0" VerticalAlignment="Center"
                                                                Text="{Binding IsGrowing, Converter={StaticResource BoolToArrowConverter}}" 
                                                                Foreground="{Binding IsGrowing,Converter={StaticResource BoolToColorConverter}}"/>
                                                     <TextBlock Text="{Binding CurrentValue}" Grid.Row="1" VerticalAlignment="Center"/>
-                                                    <TextBlock Grid.Row="1" Grid.Column="1" Margin="5,0,0,0" VerticalAlignment="Center"
+                                                    <TextBlock Grid.Row="1" Grid.Column="1" Margin="15,0,0,0" VerticalAlignment="Center"
                                                                Text="{Binding ChangeRate}" Foreground="{Binding IsGrowing,Converter={StaticResource BoolToColorConverter}}"/>
                                                 </Grid>
                                             </DataTemplate>
                                         </ItemsControl.ItemTemplate>
                                     </ItemsControl>
-
 
                                 </Grid>
                             </Border>
@@ -468,9 +467,7 @@
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
 
-
-
-            </Grid>
+             </Grid>
 
         </Grid>
     </ScrollViewer>

@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using WpfAppTest.Common;
 using WpfAppTest.Model;
+using WpfAppTest.Service;
 
 namespace WpfAppTest.ViewModel
 {
@@ -27,7 +28,13 @@ namespace WpfAppTest.ViewModel
             set { _instrucmentValue = value; this.DoNotify(); }
         }
 
+        private int _itemCount;
 
+        public int ItemCount
+        {
+            get { return _itemCount; }
+            set { _itemCount = value; this.DoNotify(); }
+        }
 
         public FirstPageViewModel()
         {
@@ -69,7 +76,8 @@ namespace WpfAppTest.ViewModel
         //初始化学员监控情况内容 SeriesList与Seriescollection应一一对应
         public void InitCourseSeriesList()
         {
-            CourseSeriesList.Add(new CourseSeriesModel 
+            #region 写死代码
+            /*CourseSeriesList.Add(new CourseSeriesModel 
             { 
                 CourseName = "铲车人",
                 Seriescollection = new LiveCharts.SeriesCollection {
@@ -160,7 +168,17 @@ namespace WpfAppTest.ViewModel
                     new SeriesModel{SeriesName="C++",CurrentValue=44,IsGrowing=false,ChangeRate=2},
                 }
 
-            });
+            });*/
+            #endregion
+
+            var Courselist = LocalDataAccess.GetInstance().GetCoursePlayRecord();
+            //计算数据库中课程中平台的最大数量 通过数据绑定改变 FirstPageView(UniformGrid Columns)的值
+            this.ItemCount = Courselist.Max(c => c.SeriesList.Count);
+
+            foreach (var item in Courselist)
+            {
+                this.CourseSeriesList.Add(item);
+            }
         }
     }
 }

@@ -137,7 +137,8 @@ namespace WpfAppTest.Service
                           on a.course_id = b.course_id
                           left
                           join platforms c
-                          on b.platform_id = c.platform_id";
+                          on b.platform_id = c.platform_id
+                          order by a.course_id , c.platform_id";
 
                     adapter = new MySqlDataAdapter(sql, connection);
 
@@ -149,15 +150,17 @@ namespace WpfAppTest.Service
 
                     foreach (DataRow dr in table.AsEnumerable())
                     {
+
                         string tempid = dr.Field<string>("course_id");
                         if(course_id != tempid)
                         {
-                            cModel = new CourseSeriesModel();                   
-                            cModel.CourseName = dr.Field<string>("course_name");
-                            cModel.Seriescollection = new LiveCharts.SeriesCollection();
+                            course_id = tempid;
+                            cModel = new CourseSeriesModel();                          
+                            cModel.CourseName = dr.Field<string>("course_name");                   
+                            cModel.Seriescollection = new SeriesCollection();                                          
                             cModel.SeriesList = new System.Collections.ObjectModel.ObservableCollection<SeriesModel>();
 
-                            cModelList.Add(cModel);                         
+                            cModelList.Add(cModel);
                         }
 
                         if (cModel != null)
@@ -165,7 +168,8 @@ namespace WpfAppTest.Service
                             cModel.Seriescollection.Add(new PieSeries
                             {
                                 Title = dr.Field<string>("platform_name"),
-                                Values = new ChartValues<ObservableValue> { new ObservableValue(dr.Field<double>("play_count")) },
+                                Values = new ChartValues<ObservableValue> 
+                                { new ObservableValue(dr.Field<int>("play_count")) },
                                 DataLabels = false
                             });
 
@@ -197,5 +201,40 @@ namespace WpfAppTest.Service
             return null;
         }
 
+        public List<string> CoursePageView_GetTeacher()
+        {
+            List<string> result = new List<string>();
+            try
+            {
+                if (DBConnection())
+                {
+                    string sql =
+                        "select real_name from user where is_teacher=1";
+                    adapter = new MySqlDataAdapter(sql, connection);                  
+                    DataTable table = new DataTable();
+                    int count = adapter.Fill(table);     
+                    
+                    if(count>0)
+                    {
+                        result = table.AsEnumerable().Select(teacher => teacher.Field<string>("real_name")).ToList();                      
+                    }
+                    return result;
+                }
+                else
+                {
+                    Console.WriteLine("无法连接数据库");
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                this.Dispose();
+            }
+            return result;
+        }
     }
+
 }
