@@ -108,6 +108,7 @@
     <Compile Include="Converter\BoolToColorConverter.cs" />
     <Compile Include="Converter\GenderConcert.cs" />
     <Compile Include="Model\CategoryItemModel.cs" />
+    <Compile Include="Model\CoursePageView_CourseModel.cs" />
     <Compile Include="Model\CourseSeriesModel.cs" />
     <Compile Include="Model\SeriesModel.cs" />
     <Compile Include="Model\UserModel.cs" />

@@ -235,6 +235,71 @@ namespace WpfAppTest.Service
             }
             return result;
         }
+
+        public List<CoursePageView_CourseModel> CoursePageView_GetCourses()
+        {
+            List<CoursePageView_CourseModel> result = new List<CoursePageView_CourseModel>();
+            try
+            {
+                if (DBConnection())
+                {
+                    string sql =
+                        @"SELECT a.course_id,a.course_name,c.real_name,a.description,a.course_image,a.course_url
+                          FROM courses a
+                          left join courses_teacher_relation b
+                          on a.course_id = b.course_id
+                          left join user c
+                          on b.teacher_id = c.userid
+                          order by a.course_id";
+
+                    adapter = new MySqlDataAdapter(sql, connection);
+                    DataTable table = new DataTable();
+                    int count = adapter.Fill(table);
+
+                    if (count > 0)
+                    {
+                        string courseId = "";
+                        CoursePageView_CourseModel model = null;
+                            
+                        foreach (DataRow dr in table.AsEnumerable())
+                        {
+                            string tempId = dr.Field<string>("course_id");
+                            if(courseId != tempId)
+                            {
+                                courseId = tempId;
+                                model = new CoursePageView_CourseModel();
+                                model.CourseName = dr.Field<string>("course_name");
+                                model.Description = dr.Field<string>("description");
+                                model.CourseImage = dr.Field<string>("course_image");
+                                model.Url = dr.Field<string>("course_url");
+                                model.Teachers = new List<string>();
+
+                                result.Add(model);
+                            }
+                            if(model != null)
+                            {
+                                model.Teachers.Add(dr.Field<string>("real_name"));
+                            }
+                        }
+
+                    }
+                    return result;
+                }
+                else
+                {
+                    Console.WriteLine("无法连接数据库");
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                this.Dispose();
+            }
+            return result;
+        }
     }
 
 }
