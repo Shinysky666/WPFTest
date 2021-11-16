@@ -10,7 +10,6 @@ D:\Study\WPFTest\YHJ_WPF-Controls\obj\Debug\YHJ_WPF-Controls.csproj.GenerateReso
 D:\Study\WPFTest\YHJ_WPF-Controls\obj\Debug\YHJ_WPF-Controls.csproj.CoreCompileInputs.cache
 D:\Study\WPFTest\YHJ_WPF-Controls\obj\Debug\YHJ_WPF-Controls.dll
 D:\Study\WPFTest\YHJ_WPF-Controls\obj\Debug\YHJ_WPF-Controls.pdb
-D:\Study\WPFTest\YHJ_WPF-Controls\obj\Debug\YHJ_WPF-Controls.csproj.AssemblyReference.cache
 E:\Study\WPFTest\YHJ_WPF-Controls\bin\Debug\YHJ_WPF-Controls.dll
 E:\Study\WPFTest\YHJ_WPF-Controls\bin\Debug\YHJ_WPF-Controls.pdb
 E:\Study\WPFTest\YHJ_WPF-Controls\obj\Debug\YHJ_WPF-Controls.csproj.AssemblyReference.cache

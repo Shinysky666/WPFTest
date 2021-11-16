@@ -281,7 +281,6 @@ namespace WpfAppTest.Service
                                 model.Teachers.Add(dr.Field<string>("real_name"));
                             }
                         }
-
                     }
                     return result;
                 }

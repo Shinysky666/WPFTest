@@ -8,6 +8,12 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("assets/images/avatar.png")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("assets/images/cartoon1.jpeg")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("assets/images/courseimage1.jpeg")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("assets/images/courseimage2.jpeg")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("assets/images/courseimage3.jpeg")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("assets/images/courseimage4.jpeg")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("assets/images/logo.png")]
 
 

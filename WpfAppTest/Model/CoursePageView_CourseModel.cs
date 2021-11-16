@@ -8,7 +8,6 @@ namespace WpfAppTest.Model
 {
     public class CoursePageView_CourseModel
     {
-        public string CourseId { get; set; }
         public string CourseName { get; set; }
         public List<string> Teachers { get; set; }
         public string Description { get; set; }

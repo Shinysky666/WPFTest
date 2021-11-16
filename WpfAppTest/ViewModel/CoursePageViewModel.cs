@@ -17,7 +17,15 @@ namespace WpfAppTest.ViewModel
 
         public ObservableCollection<CategoryItemModel> TeacherCategory { get; set; }
 
+        public ObservableCollection<CoursePageView_CourseModel> CourseList { get; set; }
+
         public CoursePageViewModel()
+        {
+            InitCategory();
+            InitCourseList();
+        }
+
+        public void InitCategory()
         {
             //付费类型
             this.PriceCategory = new ObservableCollection<CategoryItemModel>();
@@ -38,6 +46,11 @@ namespace WpfAppTest.ViewModel
             {
                 TeacherCategory.Add(new CategoryItemModel(item));
             }
+        }
+
+        public void InitCourseList()
+        {
+            CourseList = new ObservableCollection<CoursePageView_CourseModel>(LocalDataAccess.GetInstance().CoursePageView_GetCourses());
         }
     }
 }

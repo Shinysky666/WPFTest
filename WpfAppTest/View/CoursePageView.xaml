@@ -105,25 +105,35 @@
             </Border>
             
             <!--第二行-->
-            <StackPanel Grid.Row="1">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="150"/>
-                        <ColumnDefinition/>
-                        <ColumnDefinition Width="100"/>
-                    </Grid.ColumnDefinitions>
-                    <!--第一列-->
-                    <Border Width="90" Height="70" Background="#DDD" CornerRadius="5" Margin="0,15">
-                        <Border.Effect>
-                            <DropShadowEffect Color="Gray" ShadowDepth="0" BlurRadius="10" Opacity="0.3" Direction="0" />
-                        </Border.Effect>
-                    </Border>
-                    
-                    <!--第二列-->
-                    <StackPanel Grid.Column="1" VerticalAlignment="Center">
-                        <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
-                            <TextBlock FontSize="16">
-                                <Hyperlink Foreground="#333">
+            <ItemsControl Grid.Row="1" ItemsSource="{Binding CourseList}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <VirtualizingStackPanel/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="150"/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="100"/>
+                            </Grid.ColumnDefinitions>
+                            <!--第一列-->
+                            <Border Width="90" Height="70" CornerRadius="5" Margin="0,15">
+                                <Border.Effect>
+                                    <DropShadowEffect Color="Gray" ShadowDepth="0" BlurRadius="10" Opacity="0.3" Direction="0" />
+                                </Border.Effect>
+                                <Border.Background>
+                                    <ImageBrush ImageSource="{Binding CourseImage}" Stretch="UniformToFill"/>
+                                </Border.Background>
+                            </Border>
+
+                            <!--第二列-->
+                            <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                                <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                                    <TextBlock FontSize="16">
+                                <Hyperlink Foreground="#333" Command="" CommandParameter="{Binding Url}">
                                     <Hyperlink.Style>
                                         <Style>
                                             <Setter Property="TextBlock.TextDecorations" Value="{x:Null}"/>
@@ -140,42 +150,41 @@
                                             </Style.Triggers>                                         
                                         </Style>                                       
                                     </Hyperlink.Style>
-                                    <TextBlock Text="C#./Net架构师蜕变营"/>        
+                                    <TextBlock Text="{Binding CourseName}"/>        
                                 </Hyperlink>
                             </TextBlock>
-                            
-                            <StackPanel Orientation="Horizontal" Margin="15,0">
-                                <Border Background="#EEE" Margin="5,0" CornerRadius="5">
-                                    <TextBlock Text="韩金龙" Margin="12,3"/>
-                                </Border>
-                                <Border Background="#EEE" Margin="5,0" CornerRadius="5">
-                                    <TextBlock Text="张嘉文" Margin="12,3"/>
-                                </Border>
-                            </StackPanel>
-                        </StackPanel>
 
-                        <TextBlock Text="课程介绍课程介绍课程介绍课程介绍课程介绍课程介绍课程介绍课程介绍课程介绍课程介绍课程介绍课程介绍课程介绍课程介绍"
+                                    <StackPanel Orientation="Horizontal" Margin="15,0">
+                                        <Border Background="#EEE" Margin="5,0" CornerRadius="5">
+                                            <TextBlock Text="韩金龙" Margin="12,3"/>
+                                        </Border>
+                                        <Border Background="#EEE" Margin="5,0" CornerRadius="5">
+                                            <TextBlock Text="张嘉文" Margin="12,3"/>
+                                        </Border>
+                                    </StackPanel>
+                                </StackPanel>
+
+                                <TextBlock Text="{Binding Description}"
                                    TextWrapping="Wrap" LineHeight="20" Foreground="#AAA"/>
-                        
-                    </StackPanel>
-                    
-                    <!--第三列-->
-                    <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                        <TextBlock Margin="5,0">
+
+                            </StackPanel>
+
+                            <!--第三列-->
+                            <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <TextBlock Margin="5,0">
                             <!--根据业务需要若点击会进行跳转 则Command绑定ViewModel里的方法-->
                             <Hyperlink Command="">详情</Hyperlink>
-                        </TextBlock>
-                        <TextBlock Margin="5,0">
+                                </TextBlock>
+                                <TextBlock Margin="5,0">
                             <Hyperlink>删除</Hyperlink>
-                        </TextBlock>
-                    </StackPanel>
+                                </TextBlock>
+                            </StackPanel>
+                        </Grid>
+                    </DataTemplate>
                     
-                    
-                </Grid>
-                
-            </StackPanel>
-
-
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+            
         </Grid>
 
     </Border>
