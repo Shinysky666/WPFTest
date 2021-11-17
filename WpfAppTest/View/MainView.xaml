@@ -133,7 +133,7 @@
     </Window.Triggers>
     
     
-    <Border Margin="5" Background="White" CornerRadius="10">
+    <Border Margin="5" Background="#F7F9FA" CornerRadius="10">
         <!--边框阴影-->
         <Border.Effect>
             <DropShadowEffect Color="Gray" ShadowDepth="0" BlurRadius="5" Opacity="0.3" Direction="0"/>

@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WpfAppTest.Common;
 using WpfAppTest.Model;
 using WpfAppTest.Service;
 
@@ -19,9 +20,19 @@ namespace WpfAppTest.ViewModel
 
         public ObservableCollection<CoursePageView_CourseModel> CourseList { get; set; }
 
+        public CommandBase OpenCourseUrl { get; set; }
+
         public CoursePageViewModel()
         {
+            //点击课程名方法
+            this.OpenCourseUrl = new CommandBase();
+            this.OpenCourseUrl.DoCanExecute = new Func<object, bool>((o) => true);
+            this.OpenCourseUrl.DoExecute = new Action<object>((o) => { System.Diagnostics.Process.Start(o.ToString()); });
+
+            //初始化搜索栏
             InitCategory();
+
+            //初始化第二行的课程
             InitCourseList();
         }
 
