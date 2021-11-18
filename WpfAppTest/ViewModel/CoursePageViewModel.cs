@@ -20,20 +20,31 @@ namespace WpfAppTest.ViewModel
 
         public ObservableCollection<CoursePageView_CourseModel> CourseList { get; set; }
 
-        public CommandBase OpenCourseUrl { get; set; }
+        public List<CoursePageView_CourseModel> CourseAll { get; set; }
+
+        public CommandBase OpenCourseUrlCommand { get; set; }
+
+        public CommandBase TeacherFilterCommand { get; set; }
 
         public CoursePageViewModel()
         {
-            //点击课程名方法
-            this.OpenCourseUrl = new CommandBase();
-            this.OpenCourseUrl.DoCanExecute = new Func<object, bool>((o) => true);
-            this.OpenCourseUrl.DoExecute = new Action<object>((o) => { System.Diagnostics.Process.Start(o.ToString()); });
-
             //初始化搜索栏
             InitCategory();
 
             //初始化第二行的课程
             InitCourseList();
+
+            //点击课程名跳转网址方法
+            this.OpenCourseUrlCommand = new CommandBase();
+            this.OpenCourseUrlCommand.DoCanExecute = new Func<object, bool>((o) => true);
+            this.OpenCourseUrlCommand.DoExecute = new Action<object>((o) => { System.Diagnostics.Process.Start(o.ToString()); });
+
+            //点击老师名筛选课程
+            this.TeacherFilterCommand = new CommandBase();
+            this.TeacherFilterCommand.DoCanExecute = new Func<object, bool>((o) => true);
+            this.TeacherFilterCommand.DoExecute = new Action<object>(Category_TeacherFilter);
+
+            
         }
 
         public void InitCategory()
@@ -61,7 +72,27 @@ namespace WpfAppTest.ViewModel
 
         public void InitCourseList()
         {
-            CourseList = new ObservableCollection<CoursePageView_CourseModel>(LocalDataAccess.GetInstance().CoursePageView_GetCourses());
+            CourseAll = LocalDataAccess.GetInstance().CoursePageView_GetCourses();
+            //绑定显示的列表
+            CourseList = new ObservableCollection<CoursePageView_CourseModel>(CourseAll);
+        }
+
+        //鼠标点击分类栏老师名时 传递老师名字
+        public void Category_TeacherFilter(object o)
+        {
+            string teachername = o.ToString();
+            List<CoursePageView_CourseModel> temp = CourseAll;
+            if (teachername != "全部")
+            {
+                //筛选 CourseAll 中所选中对应的老师名
+                temp = CourseAll.Where(t => t.Teachers.Exists(e => e.Equals(teachername))).ToList();
+            }
+
+            CourseList.Clear();
+            foreach (var item in temp)
+            {
+                CourseList.Add(item);
+            }
         }
     }
 }

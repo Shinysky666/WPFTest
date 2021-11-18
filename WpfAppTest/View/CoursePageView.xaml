@@ -94,7 +94,8 @@
                                 <DataTemplate>
                                     <RadioButton Content="{Binding CategoryItemNmae}" IsChecked="{Binding IsChecked}" 
                                                  Template="{StaticResource CategoryItemButton}" 
-                                                 GroupName="Game" Margin="5,0"/>
+                                                 GroupName="Teacher" Margin="5,0"
+                                                 Command="{Binding DataContext.TeacherFilterCommand,RelativeSource={RelativeSource AncestorType=UserControl, Mode=FindAncestor}}" CommandParameter="{Binding CategoryItemNmae}"/>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>
@@ -136,7 +137,7 @@
                                         <TextBlock FontSize="16">
                                         <!--点击课程名跳转网址-->
                                         <Hyperlink Foreground="#333" 
-                                                   Command="{Binding DataContext.OpenCourseUrl ,RelativeSource={RelativeSource AncestorType=UserControl,Mode=FindAncestor}}" 
+                                                   Command="{Binding DataContext.OpenCourseUrlCommand ,RelativeSource={RelativeSource AncestorType=UserControl,Mode=FindAncestor}}" 
                                                    CommandParameter="{Binding Url}">
                                             <Hyperlink.Style>
                                                 <Style>
