@@ -13,5 +13,6 @@ namespace WpfAppTest.Model
         public string Description { get; set; }
         public string CourseImage { get; set; }
         public string Url { get; set; }
+        public bool IsShowSkeleton { get; set; }
     }
 }

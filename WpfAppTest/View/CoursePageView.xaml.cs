@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WpfAppTest.Model;
 using WpfAppTest.ViewModel;
 
 namespace WpfAppTest.View
@@ -25,6 +27,29 @@ namespace WpfAppTest.View
         {
             InitializeComponent();
             this.DataContext = new CoursePageViewModel();
+        }
+
+        private void RadioButton_Click(object sender, RoutedEventArgs e)
+        {
+            RadioButton radioBtn = sender as RadioButton;
+            string teacher = radioBtn.Content.ToString();
+
+            ICollectionView view = CollectionViewSource.GetDefaultView(this.ItemCourseList.ItemsSource);
+
+            if (teacher == "全部")
+            {
+                view.Filter = null;
+
+                // 对 CourseName 进行排序
+                //view.SortDescriptions.Add(new SortDescription("CourseName", ListSortDirection.Descending));
+            }
+            else
+            {
+                view.Filter = new Predicate<object>((o) =>
+                {
+                    return (o as CoursePageView_CourseModel).Teachers.Exists(t => t == teacher);
+                });
+            }
         }
     }
 }

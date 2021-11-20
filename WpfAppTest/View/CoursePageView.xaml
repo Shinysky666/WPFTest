@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WpfAppTest.View"
+             xmlns:yhjcontrol ="clr-namespace:YHJ_WPF_Controls;assembly=YHJ_WPF-Controls"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
 
@@ -92,10 +93,20 @@
                             </ItemsControl.ItemsPanel>
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
+                                    <!--通过View里的事件实现过滤-->
                                     <RadioButton Content="{Binding CategoryItemNmae}" IsChecked="{Binding IsChecked}" 
                                                  Template="{StaticResource CategoryItemButton}" 
                                                  GroupName="Teacher" Margin="5,0"
-                                                 Command="{Binding DataContext.TeacherFilterCommand,RelativeSource={RelativeSource AncestorType=UserControl, Mode=FindAncestor}}" CommandParameter="{Binding CategoryItemNmae}"/>
+                                                 Click="RadioButton_Click"/>
+                                    
+                                    <!--     通过ViewModel绑定实现过滤
+                                    <RadioButton Content="{Binding CategoryItemNmae}" IsChecked="{Binding IsChecked}" 
+                                                 Template="{StaticResource CategoryItemButton}" 
+                                                 GroupName="Teacher" Margin="5,0"
+                                                 Command="{Binding DataContext.TeacherFilterCommand,RelativeSource={RelativeSource AncestorType=UserControl, Mode=FindAncestor}}" 
+                                                 CommandParameter="{Binding CategoryItemNmae}"/>
+                                    -->
+                                    
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>
@@ -107,7 +118,7 @@
             
             <!--第二行-->
             <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Hidden">
-                <ItemsControl ItemsSource="{Binding CourseList}">
+                <ItemsControl ItemsSource="{Binding CourseList}" x:Name="ItemCourseList">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
                             <VirtualizingStackPanel/>
@@ -116,25 +127,26 @@
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="150"/>
-                                    <ColumnDefinition/>
-                                    <ColumnDefinition Width="100"/>
-                                </Grid.ColumnDefinitions>
-                                <!--第一列-->
-                                <Border Width="90" Height="70" CornerRadius="5" Margin="0,15">
-                                    <Border.Effect>
-                                        <DropShadowEffect Color="Gray" ShadowDepth="0" BlurRadius="10" Opacity="0.3" Direction="0" />
-                                    </Border.Effect>
-                                    <Border.Background>
-                                        <ImageBrush ImageSource="{Binding CourseImage}" Stretch="UniformToFill"/>
-                                    </Border.Background>
-                                </Border>
+                                <Grid x:Name="courseContent">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="150"/>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition Width="100"/>
+                                    </Grid.ColumnDefinitions>
+                                    <!--第一列-->
+                                    <Border Width="90" Height="70" CornerRadius="5" Margin="0,15">
+                                        <Border.Effect>
+                                            <DropShadowEffect Color="Gray" ShadowDepth="0" BlurRadius="10" Opacity="0.3" Direction="0" />
+                                        </Border.Effect>
+                                        <Border.Background>
+                                            <ImageBrush ImageSource="{Binding CourseImage}" Stretch="UniformToFill"/>
+                                        </Border.Background>
+                                    </Border>
 
-                                <!--第二列-->
-                                <StackPanel Grid.Column="1" VerticalAlignment="Center">
-                                    <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
-                                        <TextBlock FontSize="16">
+                                    <!--第二列-->
+                                    <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                                        <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                                            <TextBlock FontSize="16">
                                         <!--点击课程名跳转网址-->
                                         <Hyperlink Foreground="#333" 
                                                    Command="{Binding DataContext.OpenCourseUrlCommand ,RelativeSource={RelativeSource AncestorType=UserControl,Mode=FindAncestor}}" 
@@ -160,44 +172,57 @@
                                         </Hyperlink>                               
                                     </TextBlock>
 
-                                        <!--老师标签绑定-->
-                                        <ItemsControl Margin="15,0" ItemsSource="{Binding Teachers}">
-                                            <ItemsControl.ItemsPanel>
-                                                <ItemsPanelTemplate>
-                                                    <VirtualizingStackPanel Orientation="Horizontal"/>
-                                                </ItemsPanelTemplate>
-                                            </ItemsControl.ItemsPanel>
-                                            <ItemsControl.ItemTemplate>
-                                                <DataTemplate>
-                                                    <Border Background="#EEE" Margin="5,0" CornerRadius="5">
-                                                        <TextBlock Text="{Binding Path=.}" Margin="12,3"/>
-                                                    </Border>
-                                                </DataTemplate>
-                                            </ItemsControl.ItemTemplate>
-                                        </ItemsControl>
+                                            <!--老师标签绑定-->
+                                            <ItemsControl Margin="15,0" ItemsSource="{Binding Teachers}">
+                                                <ItemsControl.ItemsPanel>
+                                                    <ItemsPanelTemplate>
+                                                        <VirtualizingStackPanel Orientation="Horizontal"/>
+                                                    </ItemsPanelTemplate>
+                                                </ItemsControl.ItemsPanel>
+                                                <ItemsControl.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <Border Background="#EEE" Margin="5,0" CornerRadius="5">
+                                                            <TextBlock Text="{Binding Path=.}" Margin="12,3"/>
+                                                        </Border>
+                                                    </DataTemplate>
+                                                </ItemsControl.ItemTemplate>
+                                            </ItemsControl>
+                                        </StackPanel>
+
+                                        <TextBlock Text="{Binding Description}"
+                                   TextWrapping="Wrap" LineHeight="20" Foreground="#AAA"/>
                                     </StackPanel>
 
-                                    <TextBlock Text="{Binding Description}"
-                                   TextWrapping="Wrap" LineHeight="20" Foreground="#AAA"/>
-                                </StackPanel>
-
-                                <!--第三列-->
-                                <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                                    <TextBlock Margin="5,0">
+                                    <!--第三列-->
+                                    <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                        <TextBlock Margin="5,0">
                             <!--根据业务需要若点击会进行跳转 则Command绑定ViewModel里的方法-->
                             <Hyperlink Command="">详情</Hyperlink>
-                                    </TextBlock>
-                                    <TextBlock Margin="5,0">
+                                        </TextBlock>
+                                        <TextBlock Margin="5,0">
                             <Hyperlink>删除</Hyperlink>
-                                    </TextBlock>
-                                </StackPanel>
+                                        </TextBlock>
+                                    </StackPanel>
+                                </Grid>
+                                <yhjcontrol:SkeletonScreen Grid.Row="1" Name="skeleton"/>
                             </Grid>
+
+                            <DataTemplate.Triggers>
+                                <DataTrigger Binding="{Binding IsShowSkeleton}" Value="True">
+                                    <Setter Property="Visibility" Value="Visible" TargetName="skeleton"/>
+                                    <Setter Property="Visibility" Value="Collapsed" TargetName="courseContent"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding IsShowSkeleton}" Value="False">
+                                    <Setter Property="Visibility" Value="Collapsed" TargetName="skeleton"/>
+                                    <Setter Property="Visibility" Value="Visible" TargetName="courseContent"/>
+                                </DataTrigger>
+                                
+                            </DataTemplate.Triggers>
+                            
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
             </ScrollViewer>
-
-
         </Grid>
 
     </Border>

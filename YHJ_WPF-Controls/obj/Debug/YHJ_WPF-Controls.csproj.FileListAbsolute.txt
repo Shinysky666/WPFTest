@@ -23,3 +23,6 @@ E:\Study\WPFTest\YHJ_WPF-Controls\obj\Debug\YHJ_WPF-Controls.csproj.GenerateReso
 E:\Study\WPFTest\YHJ_WPF-Controls\obj\Debug\YHJ_WPF-Controls.csproj.CoreCompileInputs.cache
 E:\Study\WPFTest\YHJ_WPF-Controls\obj\Debug\YHJ_WPF-Controls.dll
 E:\Study\WPFTest\YHJ_WPF-Controls\obj\Debug\YHJ_WPF-Controls.pdb
+D:\Study\WPFTest\YHJ_WPF-Controls\obj\Debug\SkeletonScreen.g.cs
+D:\Study\WPFTest\YHJ_WPF-Controls\obj\Debug\SkeletonScreen.baml
+D:\Study\WPFTest\YHJ_WPF-Controls\obj\Debug\YHJ_WPF-Controls.csproj.AssemblyReference.cache
