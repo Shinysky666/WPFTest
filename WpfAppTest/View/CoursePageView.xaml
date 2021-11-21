@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WpfAppTest.View"
              xmlns:yhjcontrol ="clr-namespace:YHJ_WPF_Controls;assembly=YHJ_WPF-Controls"
+             xmlns:mycommon ="clr-namespace:WpfAppTest.Common"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
 
@@ -25,6 +26,91 @@
             </ControlTemplate.Triggers>
             
         </ControlTemplate>
+
+        <DataTemplate x:Key="courseTemplate">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="100"/>
+                </Grid.ColumnDefinitions>
+                <!--第一列-->
+                <Border Width="90" Height="70" CornerRadius="5" Margin="0,15">
+                    <Border.Effect>
+                        <DropShadowEffect Color="Gray" ShadowDepth="0" BlurRadius="10" Opacity="0.3" Direction="0" />
+                    </Border.Effect>
+                    <Border.Background>
+                        <ImageBrush ImageSource="{Binding CourseImage}" Stretch="UniformToFill"/>
+                    </Border.Background>
+                </Border>
+
+                <!--第二列-->
+                <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                        <TextBlock FontSize="16">
+                                        <!--点击课程名跳转网址-->
+                                        <Hyperlink Foreground="#333" 
+                                                   Command="{Binding DataContext.OpenCourseUrlCommand ,RelativeSource={RelativeSource AncestorType=UserControl,Mode=FindAncestor}}" 
+                                                   CommandParameter="{Binding Url}">
+                                            <Hyperlink.Style>
+                                                <Style>
+                                            <Setter Property="TextBlock.TextDecorations" Value="{x:Null}"/>
+                                                <Style.Triggers>
+                                                    <Trigger Property="Hyperlink.IsMouseOver" Value="True">
+                                                        <Setter Property="TextBlock.TextDecorations">
+                                                            <Setter.Value>
+                                                                <TextDecorationCollection>
+                                                                    <TextDecoration Location="Underline"/>
+                                                                </TextDecorationCollection>
+                                                            </Setter.Value>
+                                                        </Setter>
+                                                    </Trigger>
+                                                </Style.Triggers>  
+                                                </Style> 
+                                        
+                                            </Hyperlink.Style>                                                
+                                            <TextBlock Text="{Binding CourseName}"/>        
+                                        </Hyperlink>                               
+                                    </TextBlock>
+
+                        <!--老师标签绑定-->
+                        <ItemsControl Margin="15,0" ItemsSource="{Binding Teachers}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <VirtualizingStackPanel Orientation="Horizontal"/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Border Background="#EEE" Margin="5,0" CornerRadius="5">
+                                        <TextBlock Text="{Binding Path=.}" Margin="12,3"/>
+                                    </Border>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+
+                    <TextBlock Text="{Binding Description}"
+                                   TextWrapping="Wrap" LineHeight="20" Foreground="#AAA"/>
+                </StackPanel>
+
+                <!--第三列-->
+                <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <TextBlock Margin="5,0">
+                            <!--根据业务需要若点击会进行跳转 则Command绑定ViewModel里的方法-->
+                            <Hyperlink Command="">详情</Hyperlink>
+                    </TextBlock>
+                    <TextBlock Margin="5,0">
+                            <Hyperlink>删除</Hyperlink>
+                    </TextBlock>
+                </StackPanel>
+            </Grid>
+        </DataTemplate>
+
+        <DataTemplate x:Key="skeletonTemplate">
+            <yhjcontrol:SkeletonScreen Grid.Row="1"/>
+        </DataTemplate>
+        
     </UserControl.Resources>
     
     
@@ -124,90 +210,21 @@
                             <VirtualizingStackPanel/>
                         </ItemsPanelTemplate>
                     </ItemsControl.ItemsPanel>
+
+
+                    <!--模板选择器实现骨骼动画加载-->
+                    <ItemsControl.ItemTemplateSelector>
+                        <mycommon:CoursePageView_CourseDataTemplateSelector 
+                            DefaultTemplate="{StaticResource courseTemplate}"
+                            SkeletonTemplate="{StaticResource skeletonTemplate}"/>
+                    </ItemsControl.ItemTemplateSelector>
+
+                    
+
+                    <!-- 通过 DataTemplate.Triggers 实现骨骼动画加载 已删除 TargetName="courseContent"
                     <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <Grid>
-                                <Grid x:Name="courseContent">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="150"/>
-                                        <ColumnDefinition/>
-                                        <ColumnDefinition Width="100"/>
-                                    </Grid.ColumnDefinitions>
-                                    <!--第一列-->
-                                    <Border Width="90" Height="70" CornerRadius="5" Margin="0,15">
-                                        <Border.Effect>
-                                            <DropShadowEffect Color="Gray" ShadowDepth="0" BlurRadius="10" Opacity="0.3" Direction="0" />
-                                        </Border.Effect>
-                                        <Border.Background>
-                                            <ImageBrush ImageSource="{Binding CourseImage}" Stretch="UniformToFill"/>
-                                        </Border.Background>
-                                    </Border>
-
-                                    <!--第二列-->
-                                    <StackPanel Grid.Column="1" VerticalAlignment="Center">
-                                        <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
-                                            <TextBlock FontSize="16">
-                                        <!--点击课程名跳转网址-->
-                                        <Hyperlink Foreground="#333" 
-                                                   Command="{Binding DataContext.OpenCourseUrlCommand ,RelativeSource={RelativeSource AncestorType=UserControl,Mode=FindAncestor}}" 
-                                                   CommandParameter="{Binding Url}">
-                                            <Hyperlink.Style>
-                                                <Style>
-                                            <Setter Property="TextBlock.TextDecorations" Value="{x:Null}"/>
-                                                <Style.Triggers>
-                                                    <Trigger Property="Hyperlink.IsMouseOver" Value="True">
-                                                        <Setter Property="TextBlock.TextDecorations">
-                                                            <Setter.Value>
-                                                                <TextDecorationCollection>
-                                                                    <TextDecoration Location="Underline"/>
-                                                                </TextDecorationCollection>
-                                                            </Setter.Value>
-                                                        </Setter>
-                                                    </Trigger>
-                                                </Style.Triggers>  
-                                                </Style> 
-                                        
-                                            </Hyperlink.Style>                                                
-                                            <TextBlock Text="{Binding CourseName}"/>        
-                                        </Hyperlink>                               
-                                    </TextBlock>
-
-                                            <!--老师标签绑定-->
-                                            <ItemsControl Margin="15,0" ItemsSource="{Binding Teachers}">
-                                                <ItemsControl.ItemsPanel>
-                                                    <ItemsPanelTemplate>
-                                                        <VirtualizingStackPanel Orientation="Horizontal"/>
-                                                    </ItemsPanelTemplate>
-                                                </ItemsControl.ItemsPanel>
-                                                <ItemsControl.ItemTemplate>
-                                                    <DataTemplate>
-                                                        <Border Background="#EEE" Margin="5,0" CornerRadius="5">
-                                                            <TextBlock Text="{Binding Path=.}" Margin="12,3"/>
-                                                        </Border>
-                                                    </DataTemplate>
-                                                </ItemsControl.ItemTemplate>
-                                            </ItemsControl>
-                                        </StackPanel>
-
-                                        <TextBlock Text="{Binding Description}"
-                                   TextWrapping="Wrap" LineHeight="20" Foreground="#AAA"/>
-                                    </StackPanel>
-
-                                    <!--第三列-->
-                                    <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                                        <TextBlock Margin="5,0">
-                            <!--根据业务需要若点击会进行跳转 则Command绑定ViewModel里的方法-->
-                            <Hyperlink Command="">详情</Hyperlink>
-                                        </TextBlock>
-                                        <TextBlock Margin="5,0">
-                            <Hyperlink>删除</Hyperlink>
-                                        </TextBlock>
-                                    </StackPanel>
-                                </Grid>
-                                <yhjcontrol:SkeletonScreen Grid.Row="1" Name="skeleton"/>
-                            </Grid>
-
-                            <DataTemplate.Triggers>
+                        <DataTemplate>                          
+                           <DataTemplate.Triggers>
                                 <DataTrigger Binding="{Binding IsShowSkeleton}" Value="True">
                                     <Setter Property="Visibility" Value="Visible" TargetName="skeleton"/>
                                     <Setter Property="Visibility" Value="Collapsed" TargetName="courseContent"/>
@@ -215,12 +232,13 @@
                                 <DataTrigger Binding="{Binding IsShowSkeleton}" Value="False">
                                     <Setter Property="Visibility" Value="Collapsed" TargetName="skeleton"/>
                                     <Setter Property="Visibility" Value="Visible" TargetName="courseContent"/>
-                                </DataTrigger>
-                                
-                            </DataTemplate.Triggers>
-                            
+                                </DataTrigger>                               
+                            </DataTemplate.Triggers>                           
                         </DataTemplate>
-                    </ItemsControl.ItemTemplate>
+                    </ItemsControl.ItemTemplate>             
+                    -->
+
+                    
                 </ItemsControl>
             </ScrollViewer>
         </Grid>
